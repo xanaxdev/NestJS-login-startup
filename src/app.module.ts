@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ApiKeys } from './database/entities/api-keys.entity';
+import { ApiKeysAccess } from './database/entities/api-access.entity';
+import { DefaultUsers } from './database/entities/v1/user.entity';
 
 @Module({
   imports: [
@@ -18,7 +21,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [],
+      entities: [ApiKeys, ApiKeysAccess, DefaultUsers],
       synchronize: true,
     }),
   ],
