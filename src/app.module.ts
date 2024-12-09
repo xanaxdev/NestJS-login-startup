@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       isGlobal: true,
       envFilePath: '.env',
     }),
+
     // TypeORM configuration with .env
     TypeOrmModule.forRoot({
       type: 'postgres',
