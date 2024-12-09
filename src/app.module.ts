@@ -7,13 +7,13 @@ import { Passwords } from './database/entities/v1/passwords.entity';
 
 @Module({
   imports: [
-    // Main .env configuration
+    //! Main .env configuration
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
     }),
 
-    // TypeORM configuration with .env
+    //! TypeORM configuration
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
