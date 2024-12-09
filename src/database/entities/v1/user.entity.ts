@@ -1,19 +1,12 @@
-/**
- * What is here?
- * Table for user from Client Panel
- * ---------------------------------
- * Author: Kacper Płaczek
- * Date: 2024-12-09
- * Purpose: Manage user data
- **/
-
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Passwords } from './passwords.entity';
 
 @Entity()
 export class DefaultUsers {
@@ -60,4 +53,8 @@ export class DefaultUsers {
   //? For function SUSPENSION
   @Column({ nullable: true })
   DeactivationDate: Date;
+
+  //? RELATION with previous user passwords.
+  @OneToMany(() => Passwords, (password) => password.user)
+  passwords: Passwords[];
 }
