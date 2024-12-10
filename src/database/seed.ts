@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from 'src/app.module';
 import { DataSource } from 'typeorm';
-import { DefaultUsers } from '../entities/v1/user.entity';
-import { ApiKeys } from '../entities/api-keys.entity';
+import { DefaultUsers } from './entities/v1/user.entity';
+import { ApiKeys } from './entities/api-keys.entity';
 import { createHash, randomBytes } from 'crypto';
 
 // TODO : Tworzenie podstawowych (wcześniejszych haseł, dla przykładu użycia tabeli)
@@ -24,9 +24,14 @@ async function seed() {
     //? Generowanie (keysToSeed) kluczy dla tabeli ApiKeys
     for (let i = 0; i < keysToSeed; i++) {
       const newKey = randomBytes(32).toString('hex');
-      const apiKey = ApiKeysRepository.create({ key: newKey, isActive: false });
+      const validityTimeDate = new Date('2035-05-25');
+      const apiKey = ApiKeysRepository.create({
+        key: newKey,
+        validityTime: validityTimeDate,
+        isActive: false,
+      });
       await ApiKeysRepository.save(apiKey);
-      console.log(`Dodano klucz API: ${newKey}`);
+      console.log(`(✅) Dodano klucz API: ${newKey}`);
     }
 
     // ? Funkcja hashująca hasło

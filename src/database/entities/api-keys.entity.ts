@@ -17,6 +17,9 @@ export class ApiKeys {
   @CreateDateColumn()
   createdAt: Date;
 
+  @Column({ nullable: true })
+  validityTime: Date;
+
   @UpdateDateColumn()
   updatedAt: Date;
 
