@@ -23,7 +23,7 @@ export class LicenseGuard implements CanActivate {
     //? Fetch API Key from Query / Body requests.
     const license = request.query.license || request.body.license;
 
-    //! Return ERROR if the key was not sent in the query
+    //? Return ERROR if the key was not sent in the query
     if (!license) {
       throw new HttpException(
         'The query does not show the value corresponding to the license key.',
